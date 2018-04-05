@@ -1,0 +1,19 @@
+{
+  "name": "sunburst",
+  "version": "1.0.0",
+  "description": "For a given tree builds an SVG based SunBurst diagram",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sunburst",
+    "svg"
+  ],
+  "author": "Andrei Kashcha",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anvaka/sunburst"
+  }
+}
