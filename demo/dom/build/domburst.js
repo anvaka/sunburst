@@ -24,7 +24,8 @@ var defaultColor = '#a8a8a8';
 
 var tree = makeTree(document.body);
 var svg = makeChart(tree, {
-  wrap: true
+  wrap: true,
+  beforeArcClose: appendDomAttributes
 });
 
 render(svg);
@@ -43,11 +44,25 @@ function render(svg) {
 function printStats(tree) {
   var maxDepth = getMaxDepth(tree);
   var commonTags = getCommonTags(tree);
-  console.log('%cSunburst statistics: ', 'font-size: 42px');
-  console.log('Max tree depth: ', maxDepth);
-  console.log('Total tags: ', tree.leaves);
-  console.log('Most common tags: ', commonTags);
+
+  var i = document.createElement('iframe');
+  i.style.display = 'none';
+  document.body.appendChild(i);
+  i.contentWindow.console.log('%cSunburst statistics: ', 'font-size: 42px');
+  i.contentWindow.console.log('Max tree depth: ', maxDepth);
+  i.contentWindow.console.log('Total tags: ', tree.leaves);
+  i.contentWindow.console.log('Most common tags:\n', commonTags);
+  i.contentWindow.console.log('%cLegend', 'font-size: 24px');
+
+  printLegend();
 }
+
+function printLegend() {
+  Object.keys(colors).forEach(function(tagName) {
+    console.log('%c  %c - ' + tagName, 'background-color: ' + colors[tagName], 'background-color: white;');
+  })
+}
+
 
 function getCommonTags(tree) {
   var counter = new Map();
@@ -56,10 +71,10 @@ function getCommonTags(tree) {
     // Sort in decreasing count order
     return pairB[1] - pairA[1];
   })
-  .slice(0, 5) // take only top N
+  .slice(0, 10) // take only top N
   .map(function(x) {
     // return in human readable format:
-    return x[0] + ' - ' + x[1] 
+    return '\t' + x[0] + ' - ' + x[1] 
   })
   .join('\n');
 
@@ -90,6 +105,12 @@ function getMaxDepth(tree) {
       });
     }
   }
+}
+
+function appendDomAttributes(treeElement) {
+  return {
+    tag: treeElement.tagName
+  };
 }
 
 function makeTree(root) {
