@@ -22,3 +22,16 @@ Step 1. Copy content of [domburst.js](https://raw.githubusercontent.com/anvaka/s
 Step 2. Open any website and open Google Chrome developer tools ([how?](https://stackoverflow.com/a/66434/125351))
 
 Step 3. Paste content into the console, and press Enter. The chart should appear.
+
+![demo](https://i.imgur.com/NPFZwgU.gif)
+
+## Security Note
+
+In the .gif above, Facebook warns you from copy-pasting content. That is a good advice
+to follow. 
+
+In this particular case, the script doesn't access your cookies, neither does
+it send your data anywhere.
+
+If you are familiar with JavaScript, please feel free to [verify this](https://raw.githubusercontent.com/anvaka/sunburst/master/demo/dom/build/domburst.js)
+ - the entire program is ~400 lines of code, and I hope, should be straightforward to follow.
