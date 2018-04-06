@@ -32,6 +32,7 @@ printStats(tree);
 
 function render(svg) {
   document.body.innerHTML = svg;
+  document.body.style.background = 'white';
   var svgEl = document.body.querySelector('svg');
   svgEl.style.width = '100%';
   svgEl.style.height = '100%';
