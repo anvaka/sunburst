@@ -23,7 +23,7 @@ Step 2. Open any website and open Google Chrome developer tools ([how?](https://
 
 Step 3. Paste content into the console, and press Enter. The chart should appear.
 
-![demo](https://i.imgur.com/NPFZwgU.gif)
+[![demo](https://i.imgur.com/uXpfDVq.gif)](https://i.imgur.com/NPFZwgU.gif)
 
 ## Security Note
 
