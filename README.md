@@ -1,6 +1,8 @@
 # sunburst
 
-For a given tree builds an SVG based SunBurst diagram
+For a given tree builds an SVG based SunBurst diagram.
+
+See the demo images here: https://github.com/anvaka/sunburst/blob/master/demo/dom/README.md
 
 # Usage
 
