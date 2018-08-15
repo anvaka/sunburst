@@ -87,11 +87,11 @@ function getSunBurstPath(tree, options) {
 
     var level = tree.path.split(':').length - 1; // TODO: need a better structure to store path?
     var arcLength = Math.abs(startAngle - endAngle);
-    var totalLeaves = 0;
+    var totalWeight = 0;
     // In first pass, we get a sense of distribution of arc lengths at this level
     tree.children.forEach(function(child) {
       if (child.startAngle === undefined && child.endAngle === undefined) {
-        totalLeaves += child.leaves;
+        totalWeight += child.weight;
       }
     });
 
@@ -99,7 +99,7 @@ function getSunBurstPath(tree, options) {
       var endAngle, thisStartAngle;
       if (child.startAngle === undefined && child.endAngle === undefined) {
         thisStartAngle = startAngle;
-        endAngle = startAngle + arcLength * child.leaves / totalLeaves;
+        endAngle = startAngle + arcLength * child.weight / totalWeight;
         startAngle = endAngle;
       } else {
         thisStartAngle = child.startAngle;
@@ -125,8 +125,8 @@ function getSunBurstPath(tree, options) {
 
   function drawLabel(child, thisStartAngle, endAngle, level) {
     var key = child.path.replace(/:/g, '_');
-          
-    var textPath = 0 < thisStartAngle && thisStartAngle < Math.PI ? 
+
+    var textPath = 0 < thisStartAngle && thisStartAngle < Math.PI ?
       arcSegment(
         initialRadius + (level  + 0.5)* levelStep,
         endAngle, thisStartAngle,
@@ -145,7 +145,7 @@ function getSunBurstPath(tree, options) {
     var textAttributes = (customAttributes && convertToAttributes(customAttributes.text)) || '';
     var textPathAttributes = (customAttributes && convertToAttributes(customAttributes.textPath)) || '';
     var labelSVGContent = '<text class="label" ' + textAttributes + '>';
-    labelSVGContent += '<textPath startOffset="50%" text-anchor="middle" xlink:href="#' + 
+    labelSVGContent += '<textPath startOffset="50%" text-anchor="middle" xlink:href="#' +
       key + '" ' + textPathAttributes + '>' + child.label + '</textPath></text>'
     svgElements.push(labelSVGContent);
   }
@@ -228,18 +228,22 @@ function circle(r) {
 }
 
 function countLeaves(treeNode) {
-  if (treeNode.leaves) return treeNode.leaves;
+  if (treeNode.weight) return treeNode.weight;
 
-  var leaves = 0;
-  if (treeNode.children) {
+  var weight = treeNode.weight || 0;
+  if (treeNode.weight) {
     treeNode.children.forEach(function (child) {
-      leaves += countLeaves(child);
+      weight += countLeaves(child);
+    });
+  } else if (treeNode.children) {
+    treeNode.children.forEach(function (child) {
+      weight += countLeaves(child);
     });
   } else {
-    leaves = 1;
+    weight = 1;
   }
-  treeNode.leaves = leaves;
-  return leaves;
+  treeNode.weight = weight;
+  return weight;
 }
 
 function getDepth(tree) {
