@@ -2,7 +2,7 @@
 
 For a given tree builds an SVG based SunBurst diagram.
 
-See the demo images here: https://github.com/anvaka/sunburst/blob/master/demo/dom/README.md
+See the demo images here: https://github.com/anvaka/sunburst/blob/main/demo/dom/README.md
 
 # Usage
 

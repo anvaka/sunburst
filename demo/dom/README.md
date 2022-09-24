@@ -17,7 +17,7 @@ I thought it would be interesting to see a DOM tree as a sunburst diagram.
 
 # How to make your own snapshot?
 
-Step 1. Copy the content of [domburst.js](https://raw.githubusercontent.com/anvaka/sunburst/master/demo/dom/build/domburst.js).
+Step 1. Copy the content of [domburst.js](https://raw.githubusercontent.com/anvaka/sunburst/main/demo/dom/build/domburst.js).
 
 Step 2. Open any website and open Google Chrome developer tools ([how?](https://stackoverflow.com/a/66434/125351))
 
@@ -33,5 +33,5 @@ to follow.
 In this particular case, the script doesn't access your cookies, neither does
 it send your data anywhere.
 
-If you are familiar with JavaScript, please feel free to [verify this](https://raw.githubusercontent.com/anvaka/sunburst/master/demo/dom/build/domburst.js).
+If you are familiar with JavaScript, please feel free to [verify this](https://raw.githubusercontent.com/anvaka/sunburst/main/demo/dom/build/domburst.js).
 The entire program is ~400 lines of code, and I hope should be straightforward to follow.
